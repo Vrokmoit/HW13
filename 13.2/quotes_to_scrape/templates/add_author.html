@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Author</title>
+</head>
+<body>
+    <h2>Add Author</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" required>
+        <br>
+        <label for="born_date">Born Date:</label>
+        <input type="date" id="born_date" name="born_date">
+        <br>
+        <label for="born_location">Born Location:</label>
+        <input type="text" id="born_location" name="born_location">
+        <br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+        <br>
+        <button type="submit">Add Author</button>
+    </form>
+</body>
+</html>

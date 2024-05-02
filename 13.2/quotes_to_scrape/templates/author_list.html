@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Authors</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/main.css">
+    <style>
+        .author-info {
+            padding: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #333333;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px #333333;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>All Authors</h2>
+            {% for author in authors %}
+            <div class="author-info">
+                <h3>{{ author.fullname }}</h3>
+                <p><strong>Born:</strong> {{ author.born_date }} in {{ author.born_location }}</p>
+                <p>{{ author.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

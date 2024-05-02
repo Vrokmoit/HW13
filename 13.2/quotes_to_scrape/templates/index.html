@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quotes to Scrape</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/main.css">
+    <style>
+        .quote {
+            padding: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #333333;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px #333333;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row header-box">
+        <div class="col-md-8">
+            <h1>
+                <a href="/" style="text-decoration: none">Quotes to Scrape</a>
+            </h1>
+        </div>
+        <div class="col-md-4">
+            <p>
+                {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="/login">Login</a>
+                    <a href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </p>
+            <p>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'add_author' %}">Add Author</a> |
+                    <a href="{% url 'add_quote' %}">Add Quote</a>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>All Quotes</h2>
+            <ul>
+                {% for quote in quotes %}
+                <li class="quote">
+                    "{{ quote.quote }}"
+                    <br>
+                    <a href="{% url 'author_list' %}">about</a>
+                    <br>
+                    Tags: {% for tag in quote.tags %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">
+            Quotes by: <a href="https://www.goodreads.com/quotes">GoodReads.com</a>
+        </p>
+        <p class="copyright">
+            Made with <span class='zyte'>❤</span> by <a class='zyte' href="https://www.zyte.com">Zyte</a>
+        </p>
+    </div>
+</footer>
+</body>
+</html>
